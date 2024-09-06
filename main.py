@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
-from routes import router
-from models import engine
+from app.routes import router
+from app.models import engine
 from config import Config
 from elasticsearch import Elasticsearch
 import asyncio
@@ -26,4 +26,4 @@ app.include_router(router)
 
 if __name__ == "__main__":
     asyncio.run(create_index())
-    uvicorn.run(app, port=8000, host='127.0.0.1')
+    uvicorn.run(app, port=8000, host='0.0.0.0')

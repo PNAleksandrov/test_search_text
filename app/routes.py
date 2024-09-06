@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch
 
 from fastapi import FastAPI, APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from models import Document, SessionLocal
+from app.models import Document, SessionLocal
 from config import Config
 
 app = FastAPI()

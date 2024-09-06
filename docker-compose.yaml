@@ -1,5 +1,17 @@
 version: "3.8"
 services:
+  fastapi_app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+    environment:
+      - DATABASE_URL=sqlite:///db.sqlite3
+      - REDIS_URL=redis://redis:6379
+
+
   elasticsearch:
     container_name: es-container
     image: docker.io/bitnami/elasticsearch:8
@@ -11,16 +23,7 @@ services:
     ports:
       - "9200:9200"
 
-  fastapi_app:
-    build: .
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/app
-      - ./logs:/app/logs
-    environment:
-      - DATABASE_URL=sqlite:///db.sqlite3
-      - REDIS_URL=redis://redis:6379
+
 
 networks:
   es-net:
